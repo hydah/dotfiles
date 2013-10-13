@@ -1,0 +1,17 @@
+[user]
+	name = heyu
+	email = heyudah@gmail.com
+[credential]
+	helper = cache --timeout=3600
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[http]
+	sslVerify = false

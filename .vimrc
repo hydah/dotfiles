@@ -24,6 +24,8 @@ Bundle 'nvie/vim-flake8'
 " for auto comment
 Bundle 'scrooloose/nerdcommenter' 
 "Bundle 'Valloric/YouCompleteMe'
+Bundle 'tomasr/molokai'
+Bundle 'nanotech/jellybeans.vim'
 
 "
 filetype plugin indent on    " required!
@@ -37,10 +39,18 @@ set history=1000
 syntax enable
 syntax on
 
+colorscheme jellybeans 
+set t_Co=256
+
+"let &termencoding=&encoding
+"set fileencodings=utf-8,gbk
+
 set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
+set expandtab
+set sts=4
 "configure indent for python
 autocmd FileType python setlocal et sta sw=4 sts=4
 set showmatch
