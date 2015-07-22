@@ -4,6 +4,8 @@
 
 
 " for vundle
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" BundleInstall
 set nocompatible " be iMproved
 filetype off " required!
 set rtp+=~/.vim/bundle/vundle/
