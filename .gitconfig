@@ -1,6 +1,6 @@
 [user]
 	name = heyu
-	email = heyudah@gmail.com
+	email = hey@vmware.com
 [credential]
 	helper = cache --timeout=3600
 [alias]
@@ -15,3 +15,6 @@
 	branch = auto
 [http]
 	sslVerify = false
+	proxy = http://proxy.vmware.com:3128
+[https]
+	proxy = https://proxy.vmware.com:3128
