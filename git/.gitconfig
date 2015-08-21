@@ -1,0 +1,22 @@
+[user]
+	name = heyu
+	email = hey@vmware.com
+[credential]
+	helper = cache --timeout=3600
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[http]
+	sslVerify = false
+	proxy = http://proxy.vmware.com:3128
+[https]
+	proxy = https://proxy.vmware.com:3128
+[push]
+	default = simple
