@@ -27,3 +27,9 @@ fi
 ########################################
 export PS1="[\e[31m\u\e[0m@\e[33m\h\e[0m \e[36m\w\e[0m]\$ "
 export http_proxy="http://proxy.vmware.com:3128"
+export https_proxy="http://proxy.vmware.com:3128"
+function grepv()
+{
+   vim "+Rgrep $1" .
+}
+alias vimgrep=grepv
