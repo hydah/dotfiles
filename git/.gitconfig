@@ -15,8 +15,5 @@
 	branch = auto
 [http]
 	sslVerify = false
-	proxy = http://proxy.vmware.com:3128
-[https]
-	proxy = https://proxy.vmware.com:3128
-[push]
-	default = simple
+[core]
+	editor = vim
