@@ -29,6 +29,7 @@ Bundle 'scrooloose/nerdcommenter'
 "Bundle 'Valloric/YouCompleteMe'
 Bundle 'tomasr/molokai'
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'bling/vim-airline'
 
 "
 filetype plugin indent on    " required!
@@ -69,6 +70,10 @@ let g:winManagerWindowLayout='FileExplorer|TagList'
 let g:bufExplorerMaxHeight=50
 let g:persistentBehaviour=0
 nmap wm :WMToggle<cr>
+
+" map fo quickfix
+nmap qi :cclose<cr>
+nmap qo :cw<cr>
 
 " for cscope used in quickfix
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
