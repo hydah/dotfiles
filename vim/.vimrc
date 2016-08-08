@@ -140,6 +140,11 @@ nmap <F5> :!ctags -R  .<CR>
 " :cn for next, :cp for previous
 nmap <F6> :cp<cr>
 nmap <F7> :cn<cr>
+" auto open quickfix window
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+" open in the topright
+autocmd FileType qf wincmd L
 
 
 
