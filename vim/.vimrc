@@ -22,15 +22,15 @@ Bundle 'taglist.vim'
 "Bundle 'winmanager'
 Bundle 'grep.vim'
 Bundle 'bufexplorer.zip'
-" for python code syntax inspect
-Bundle 'nvie/vim-flake8'
-Bundle 'davidhalter/jedi-vim'
 " for auto comment
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'scrooloose/nerdcommenter'
+" for python code syntax inspect
+Bundle 'nvie/vim-flake8'
+Bundle 'davidhalter/jedi-vim'
 "Bundle 'vim-scripts/OmniCppComplete'
 "Bundle 'vim-scripts/AutoComplPop'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/python.vim'
 Bundle 'tomasr/molokai'
 Bundle 'nanotech/jellybeans.vim'
@@ -41,6 +41,7 @@ Bundle 'vim-scripts/The-NERD-tree'
 Bundle 'c.vim'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'tpope/vim-fugitive.git'
+Bundle 'airblade/vim-gitgutter'
 
 
 "
@@ -79,7 +80,7 @@ set smartindent
 set shiftwidth=3
 set sts=3
 "configure indent for python
-autocmd FileType python setlocal et sta sw=4 sts=4
+autocmd FileType python setlocal et sta sw=3 sts=3
 set showmatch
 if has('statusline')
    set laststatus=2
