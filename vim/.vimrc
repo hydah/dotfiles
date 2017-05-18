@@ -155,10 +155,11 @@ set smarttab
 set autoindent
 set smartindent
 " one tab = three spaces
-set shiftwidth=3
-set tabstop=3
+let width=4
+execute "set shiftwidth=".width
+execute "set tabstop=".width
 "configure indent for python
-autocmd FileType python setlocal et sta sw=3 sts=3
+"autocmd FileType python setlocal et sta sw=width sts=width
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
