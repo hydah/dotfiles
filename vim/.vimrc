@@ -25,8 +25,8 @@ Bundle 'bufexplorer.zip'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'scrooloose/nerdcommenter'
 " for python code syntax inspect
-"Bundle 'nvie/vim-flake8'
-"Bundle 'davidhalter/jedi-vim'
+Bundle 'nvie/vim-flake8'
+Bundle 'davidhalter/jedi-vim'
 Bundle 'vim-scripts/python.vim'
 Bundle 'tomasr/molokai'
 Bundle 'nanotech/jellybeans.vim'
@@ -84,9 +84,9 @@ autocmd QuickFixCmdPost    l* nested lwindow
 " open in the topright
 "autocmd FileType qf wincmd L
 " <F5> for quick refresh when the project changed
-nmap <F5> :!ctags -R  .<CR>
-		\ :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
-		\ :!cscope  -b -i cscope.files -f cscope.out<CR>
+nmap <F5> :! ctags -R  %:p:h/* <CR>
+		\ :! find %:p:h  -iname '*.c' -o -iname '*.py' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
+		\ :! cscope  -bqi %:p:h/cscope.files -f %:p:h/cscope.out<CR>
 		\ :cs reset<CR>
 
 
@@ -280,6 +280,31 @@ command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
 "AsyncRun
 map <leader>gg :AsyncRun! git grep <cword> . <cr>
 map <leader>gb :Gblame <cr>
+
+function! CompileAndRun()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! gcc % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
+       exec "AsyncRun! g++ -std=c++11 % -o %<; time ./%<"
+    elseif &filetype == 'java'
+       exec "AsyncRun! javac %; time java %<"
+    elseif &filetype == 'sh'
+       exec "AsyncRun! time bash %"
+    elseif &filetype == 'python'
+       exec "AsyncRun! time python3 %"
+    endif
+endfunction
+" Quick run via ,cr
+nnoremap <leader>cr :call CompileAndRun()<CR>
+augroup QuickfixStatus
+        au! BufWinEnter quickfix setlocal
+                \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
+augroup END
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+augroup vimrc
+        autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+augroup END
 
 "jumps
 function! GotoJump()
