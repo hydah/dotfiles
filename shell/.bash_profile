@@ -33,3 +33,4 @@ function grepv()
    vim "+Rgrep $1" .
 }
 alias vimgrep=grepv
+alias vi=vim
