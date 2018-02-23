@@ -3,7 +3,7 @@ syntax on
 "colorscheme busybee
 
 set background=dark
-" solarized options 
+" solarized options
 colorscheme solarized
 hi Normal ctermfg=252 ctermbg=none
 
@@ -13,13 +13,15 @@ filetype off  " required!
 call plug#begin('~/.local/share/nvim/plugged')
 
 " My Bundles here:
+Plug 'altercation/vim-colors-solarized'
+Plug 'Valloric/YouCompleteMe'
 Plug 'mileszs/ack.vim'
 Plug 'mattn/emmet-vim'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'majutsushi/tagbar'
-Plug 'kien/ctrlp.vim' 
+Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/xml.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'flazz/vim-colorschemes'
@@ -94,11 +96,11 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap gd <Plug>(go-def-tab)
 
 "For Youdao Translater Plugin
-vnoremap <silent> <C-T> <Esc>:Ydv<CR> 
-nnoremap <silent> <C-T> <Esc>:Ydc<CR> 
+vnoremap <silent> <C-T> <Esc>:Ydv<CR>
+nnoremap <silent> <C-T> <Esc>:Ydc<CR>
 
 "inoremap jj <Esc>
- 
+
 "Powerline setting
 let g:airline_theme='molokai'
 
@@ -118,22 +120,22 @@ let g:SuperTabRetainCompletionType="context"
 "For Indent Guides Plugin
 "let g:indent_guides_enable_on_vim_startup = 1
 
-" 设定文件浏览器目录为当前目录  
-set bsdir=buffer  
-" 设置编码  
-set encoding=utf-8  
+" 设定文件浏览器目录为当前目录
+set bsdir=buffer
+" 设置编码
+set encoding=utf-8
 set nocompatible
 set laststatus=2
-" 设置文件编码  
-set fenc=utf-8 
+" 设置文件编码
+set fenc=utf-8
 
 "set to use clipboard of system
 set clipboard=unnamed
 
-" 设置文件编码检测类型及支持格式  
-set fencs=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936  
+" 设置文件编码检测类型及支持格式
+set fencs=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 
-"显示行号  
+"显示行号
 set number
 "Show related row numbers
 set relativenumber
@@ -145,10 +147,10 @@ set backspace=indent,eol,start
 "忽略大小写查找
 set ic
 
-" tab宽度  
-set tabstop=2  
-set cindent shiftwidth=2  
-set autoindent shiftwidth=2 
+" tab宽度
+set tabstop=4
+set cindent shiftwidth=4
+set autoindent shiftwidth=4
 
 " set 折叠
 set foldmethod=indent
@@ -180,7 +182,7 @@ map <leader>n :nohl<CR>
 "let loaded_nerd_tree=1
 let NERDTreeQuitOnOpen = 0
 let NERDChristmasTree=1
-let g:NERDTreeWinSize = 32 
+let g:NERDTreeWinSize = 32
 map <leader>f :NERDTreeToggle<CR>
 
 " Settings for vim-easymotion
@@ -235,7 +237,7 @@ let g:tagbar_type_go = {
   \    'extends' : 'html',
   \  },
   \}
- 
+
 "set CtrlP
 if executable('ag')
   " Use Ag over Grep
