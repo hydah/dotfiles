@@ -18,8 +18,11 @@ cd vim
 make -j8 && sudo make install
 popd
 
+
 # for python
 pushd ~
 wget https://bootstrap.pypa.io/get-pip.py
 sudo python3 get-pip.py
 sudo pip install jedi
+
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

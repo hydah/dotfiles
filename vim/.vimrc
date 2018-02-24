@@ -3,50 +3,59 @@
 "	vim.org/scripts: http://www.vim.org/scripts/index.php
 
 
-" for vundle
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" for vim: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" for neovim:
+"
 " BundleInstall
+
 set nocompatible " be iMproved
 set backspace=indent,eol,start
-filetype off " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-" " required!
-Bundle 'gmarik/vundle'
+" Configuration section of vundle
+filetype off  " required!
 
+call plug#begin('~/.local/share/vim/plugged')
 " " vim-scripts repos
-Bundle 'a.vim'
-Bundle 'taglist.vim'
-"Bundle 'winmanager'
-Bundle 'grep.vim'
-Bundle 'bufexplorer.zip'
-" for auto comment
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/grep.vim'
 " for python code syntax inspect
-Bundle 'nvie/vim-flake8'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'vim-scripts/python.vim'
-Bundle 'tomasr/molokai'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'yssl/QFEnter'
-Bundle 'vim-scripts/The-NERD-tree'
-Bundle 'c.vim'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'tpope/vim-fugitive.git'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'skywind3000/asyncrun.vim'
-"Bundle 'prabirshrestha/async.vim'
-"Bundle 'prabirshrestha/asyncomplete.vim'
-"Bundle 'python.vim--Vasiliev'
-" Bundle 'vim-scripts/SuperTab'
-"Bundle 'vim-scripts/OmniCppComplete'
-"Bundle 'vim-scripts/AutoComplPop'
-"Bundle 'Valloric/YouCompleteMe'
+Plug 'nvie/vim-flake8'
+Plug 'davidhalter/jedi-vim'
+Plug 'vim-scripts/python.vim'
+Plug 'tomasr/molokai'
+Plug 'nanotech/jellybeans.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/c.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-fugitive.git'
+Plug 'airblade/vim-gitgutter'
+Plug 'mileszs/ack.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rails'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'fatih/vim-go'
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-clang'
+    Plug 'zchee/deoplete-go'
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'zchee/deoplete-clang'
+    Plug 'zchee/deoplete-go'
+endif
+
+call plug#end()
+
 
 
 """"""""""""""""""""""""""""""
@@ -130,15 +139,8 @@ set lazyredraw
 " <== color
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlight
-syntax enable
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-   set t_Co=256
-endif
-try
-   colorscheme jellybeans
-catch
-endtry
+syntax on
+
 "Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 " Use Unix as the standard file type
@@ -192,7 +194,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " for airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline_theme="jellybeans"
+let g:airline_theme="molokai"
 let g:EchoFuncShowOnStatus = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
@@ -323,78 +325,6 @@ endfunction
 
 nmap <Leader>j :call GotoJump()<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" for auto-complement
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-                    \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-    " For no inserting <CR> key.
-      "return pumvisible() ? "\<C-y>" : "\<CR>"
-      endfunction
-      " <TAB>: completion.
-      inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-      " <C-h>, <BS>: close popup and delete backword char.
-      inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-      inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-      " Close popup by <Space>.
-      "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-  endif
-  "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => other mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -434,3 +364,35 @@ function! VisualSelection(direction, extra_filter) range
    let @/ = l:pattern
    let @" = l:saved_reg
 endfunction
+
+
+set t_Co=256
+colorscheme molokai
+
+
+
+""""" auto complete
+let g:deoplete#enable_at_startup = 1
+"for c/c++
+let g:deoplete#sources#clang#libclang_path = "/usr/lib64/libclang.so"
+let g:deoplete#sources#clang#clang_header = "/usr/lib64/clang/5.0.1/include/"
+let g:deoplete#sources#clang#std#cpp = 'c++1z'
+let g:deoplete#sources#clang#sort_algo = 'priority'
+let g:deoplete#sources#clang#flags = [
+    \ "-stdlib=libc++",
+    \ ]
+
+"""vim-go
+let g:go_fmt_command = "goimports"
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>e <Plug>(go-rename)
