@@ -374,8 +374,10 @@ colorscheme molokai
 """"" auto complete
 let g:deoplete#enable_at_startup = 1
 "for c/c++
-let g:deoplete#sources#clang#libclang_path = "/usr/lib64/libclang.so"
-let g:deoplete#sources#clang#clang_header = "/usr/lib64/clang/5.0.1/include/"
+"let g:deoplete#sources#clang#libclang_path = "/usr/lib64/libclang.so"
+"let g:deoplete#sources#clang#clang_header = "/usr/lib64/clang/5.0.1/include/"
+let g:deoplete#sources#clang#libclang_path = "/data/data/com.termux/files/usr/lib/libclang.so"
+let g:deoplete#sources#clang#clang_header = "/data/data/com.termux/files/usr/lib/clang/5.0.1/include/"
 let g:deoplete#sources#clang#std#cpp = 'c++1z'
 let g:deoplete#sources#clang#sort_algo = 'priority'
 let g:deoplete#sources#clang#flags = [
