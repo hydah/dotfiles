@@ -1,4 +1,5 @@
-source env-variable.sh
+#!/bin/bash
+source ../env-variable.sh
 
 sudo yum -y groupinstall 'Development Tools'
 sudo yum -y install ruby perl-devel python-devel ruby-devel perl-ExtUtils-Embed ncurses-devel
@@ -14,7 +15,9 @@ cd vim80
 make -j8 && sudo make install
 popd
 
-ln -s $cur_dir/vim/.vimrc ~/.vimrc
-ln -s $cur_dir/vim/.vim ~/.vim
+rm -rf ~/.vimrc
+rm -rf ~/.vim
+ln -s $root_dir/vim/.vimrc ~/.vimrc
+ln -s $root_dir/vim/.vim ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

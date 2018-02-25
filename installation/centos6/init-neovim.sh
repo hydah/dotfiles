@@ -1,4 +1,5 @@
-source env-variable.sh
+#!/bin/bash
+source ../env-variable.sh
 #for neovim
 sudo yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 pushd $PKG_DIR
@@ -11,6 +12,8 @@ popd
 # install python3 first
 sudo pip3 install neovim
 
-ln -s $cur_dir/neovim/.config ~/.config
+mkdir ~/.config
+rm -rf ~/.config/nvim
+ln -s $cur_dir/neovim/.config/nvim ~/.config/nvim
 ln -s $cur_dir/vim/.vimrc ~/.config/nvim/init.vim
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

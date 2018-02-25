@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-source ./env-variable.sh
+source ../env-variable.sh
 #install python
-sh ./init-python3.sh
+bash ./init-python3.sh
 #install vim
-sh ./init-vim.sh
+bash ./init-vim.sh
 #install neovim
-sh ./init-neovim.sh
+bash ./init-neovim.sh
 
 
 # 安装clang
@@ -23,3 +23,5 @@ sudo yum install clang clang-devel libc++ libc++-devel lld lldb lldb-devel llvm 
 su
 # 安装go tools
 sh ./init-go.sh
+
+vim +PlugInstall +q

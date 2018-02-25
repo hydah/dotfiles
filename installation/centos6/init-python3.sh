@@ -1,5 +1,6 @@
-#!/bin/sh
-source env-variable.sh
+#!/bin/bash
+
+source ../env-variable.sh
 #install python3.6
 pushd  $PKG_DIR
 sudo sudo yum install -y openssl-static
