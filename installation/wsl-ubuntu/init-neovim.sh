@@ -1,7 +1,8 @@
 #!/bin/bash
 source ../env-variable.sh
 #for neovim
-sudo yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
+sudo apt-get install build-essential
+#sudo apt install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 pushd $PKG_DIR
 git clone https://github.com/neovim/neovim.git
 cd neovim

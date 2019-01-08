@@ -1,10 +1,10 @@
 #!/bin/bash
 source ../env-variable.sh
 
-sudo yum -y groupinstall 'Development Tools'
-sudo yum -y install ruby perl-devel python-devel ruby-devel perl-ExtUtils-Embed ncurses-devel
+sudo apt-get install build-essential
+sudo apt-get install ruby libperl-dev python-dev ruby-dev ncurses-dev
 
-sudo yum remove vim
+sudo apt remove vim
 
 pushd $PKG_DIR
 #git clone https://github.com/vim/vim.git --depth=1 && cd vim/

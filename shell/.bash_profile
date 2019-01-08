@@ -30,4 +30,6 @@ function grepv()
 alias vimgrep=grepv
 alias vi=vim
 PATH=$PATH:/usr/local/bin
+export GOPATH=/code/golang:$GOPATH
+export GOBIN=$HOME/go
 
